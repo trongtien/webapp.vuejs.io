@@ -1,23 +1,50 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import TeampClient from "../views/client/TeampClient.vue";
+import TeampAdmin from "../views/admin/TeampAdmin.vue";
+import Auth from "../views/Auth.vue";
+
+// component client
+import HomeClient from "../components/pages/client/Home.vue";
+
+// component Admin
+import Dashboare from "../components/pages/admin/Dashboare.vue";
+import User from "../components/pages/admin/User.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: Home
+    path: "",
+    component: TeampClient,
+    children: [
+      {
+        path: "/",
+        name: "Home",
+        component: HomeClient
+      }
+    ]
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/auth",
+    name: "Login",
+    component: Auth
+  },
+  {
+    path: "/admin",
+    component: TeampAdmin,
+    children: [
+      {
+        path: '/admin',
+        name: "Dashboare",
+        component: Dashboare
+      },
+      {
+        path: '/admin/user',
+        name: "user",
+        component: User
+      }
+    ]
   }
 ];
 
