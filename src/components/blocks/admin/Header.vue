@@ -1,11 +1,9 @@
 <template>
   <b-navbar>
-    <b-navbar-brand href="#">Click</b-navbar-brand>
+    <b-navbar-brand href="#" @click="toggle" >Click</b-navbar-brand>
     <b-collapse id="nav-collapse" is-nav>
-      <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-item-dropdown right>
-          <!-- Using 'button-content' slot -->
           <div class="mb-2">
             <b-avatar text="BV" size="4rem"></b-avatar>
           </div>
@@ -22,9 +20,16 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+
+  methods: {
+  	toggle: function(){
+  		this.$emit('clickToggle');
+  	}
+  }
 };
 </script>
 
 <style>
+
 </style>
